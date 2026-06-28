@@ -1,10 +1,10 @@
-"""Two-stage retrieval: dense vector search + optional BM25 re-ranking.
+"""Two-stage retrieval with optional hybrid live augmentation.
 
 Stage 1 (dense): embed the query and fetch ``RETRIEVAL_CANDIDATES`` nearest
 neighbours from Qdrant. Stage 2 (lexical): re-score those candidates with BM25
-and blend the two signals, which improves precision when exact medical terms
-matter. Returns the top ``RETRIEVAL_TOP_K`` sources with a normalised
-relevance score in [0, 1].
+and blend the two signals. ``retrieve_hybrid`` adds a live step: when the local
+corpus answers weakly, it fetches fresh credible literature, caches it, and
+re-runs the search.
 """
 
 from __future__ import annotations
@@ -16,6 +16,7 @@ from rank_bm25 import BM25Okapi
 
 from app.config import settings
 from app.services.embeddings import EmbeddingService
+from app.services.live_ingest import LiveAugmentationService
 from app.services.vector_store import SearchHit, VectorStore
 from app.utils.logging_config import get_logger
 
@@ -37,6 +38,8 @@ class RetrievedSource:
     url: str | None
     authors: list[str] | None
     year: int | None
+    provider: str = "curated"
+    credibility: str = "peer_reviewed"
 
 
 def _tokenize(text: str) -> list[str]:
@@ -58,23 +61,74 @@ def _min_max_norm(values: list[float]) -> list[float]:
 
 
 class RetrievalService:
-    def __init__(self, embeddings: EmbeddingService, vector_store: VectorStore):
+    def __init__(
+        self,
+        embeddings: EmbeddingService,
+        vector_store: VectorStore,
+        augmentation: LiveAugmentationService | None = None,
+    ):
         self.embeddings = embeddings
         self.vector_store = vector_store
+        self.augmentation = augmentation
 
+    # --- public, sync (local only) ---
     def retrieve(
         self,
         query: str,
         top_k: int | None = None,
         rerank: bool | None = None,
     ) -> list[RetrievedSource]:
+        query_vec = self.embeddings.embed_query(query)
+        candidates = self.vector_store.search(query_vec, limit=settings.RETRIEVAL_CANDIDATES)
+        return self._rank(query, candidates, top_k, rerank)
+
+    # --- public, async (hybrid: local + live augmentation) ---
+    async def retrieve_hybrid(
+        self,
+        query: str,
+        top_k: int | None = None,
+        rerank: bool | None = None,
+    ) -> tuple[list[RetrievedSource], bool]:
+        """Return (sources, augmented). Augments only when local is weak."""
+        query_vec = self.embeddings.embed_query(query)
+        candidates = self.vector_store.search(query_vec, limit=settings.RETRIEVAL_CANDIDATES)
+
+        augmented = False
+        if (
+            self.augmentation is not None
+            and settings.ENABLE_LIVE_RETRIEVAL
+            and self._is_weak(candidates)
+        ):
+            try:
+                added = await self.augmentation.augment(query)
+                if added:
+                    augmented = True
+                    candidates = self.vector_store.search(
+                        query_vec, limit=settings.RETRIEVAL_CANDIDATES
+                    )
+            except Exception as exc:  # noqa: BLE001 - augmentation is best-effort
+                logger.warning("augmentation_failed", error=str(exc))
+
+        return self._rank(query, candidates, top_k, rerank), augmented
+
+    @staticmethod
+    def _is_weak(candidates: list[SearchHit]) -> bool:
+        """Decide whether to augment, using RAW cosine scores (pre-rerank)."""
+        if len(candidates) < settings.LIVE_MIN_LOCAL_HITS:
+            return True
+        # Qdrant returns candidates sorted by score desc.
+        return candidates[0].score < settings.LIVE_SCORE_THRESHOLD
+
+    # --- ranking ---
+    def _rank(
+        self,
+        query: str,
+        candidates: list[SearchHit],
+        top_k: int | None,
+        rerank: bool | None,
+    ) -> list[RetrievedSource]:
         top_k = top_k or settings.RETRIEVAL_TOP_K
         rerank = settings.ENABLE_RERANKING if rerank is None else rerank
-
-        query_vec = self.embeddings.embed_query(query)
-        candidates = self.vector_store.search(
-            query_vec, limit=settings.RETRIEVAL_CANDIDATES
-        )
         if not candidates:
             return []
 
@@ -94,6 +148,8 @@ class RetrievalService:
                 url=hit.url,
                 authors=hit.authors,
                 year=hit.year,
+                provider=hit.provider,
+                credibility=hit.credibility,
             )
             for hit, score in ranked[:top_k]
         ]

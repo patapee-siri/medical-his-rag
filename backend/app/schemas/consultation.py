@@ -38,6 +38,8 @@ class Source(BaseModel):
     relevance_score: float = Field(..., ge=0.0, le=1.0)
     source_type: str = "unknown"
     url: str | None = None
+    provider: str = "curated"
+    credibility: str = "peer_reviewed"
 
 
 class ConsultationResponse(BaseModel):

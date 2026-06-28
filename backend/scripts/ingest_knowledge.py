@@ -38,6 +38,9 @@ def load_documents() -> list[Document]:
                 url=item.get("url"),
                 authors=item.get("authors"),
                 year=item.get("year"),
+                # Curated seed corpus: hand-picked peer-reviewed literature.
+                provider=item.get("provider", "curated"),
+                credibility=item.get("credibility", "peer_reviewed"),
             )
         )
     return docs

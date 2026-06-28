@@ -63,8 +63,16 @@ export default function ConsultationResult({ result }) {
                     {Math.round(s.relevance_score * 100)}%
                   </span>
                 </div>
-                <div className="mt-1.5 flex gap-2">
+                <div className="mt-1.5 flex flex-wrap gap-2">
                   <Badge tone="slate">{s.source_type.replace(/_/g, " ")}</Badge>
+                  {s.provider && s.provider !== "curated" && (
+                    <Badge tone="teal">{s.provider}</Badge>
+                  )}
+                  {s.credibility && (
+                    <Badge tone={s.credibility === "peer_reviewed" ? "teal" : "amber"}>
+                      {s.credibility.replace(/_/g, " ")}
+                    </Badge>
+                  )}
                 </div>
               </li>
             ))}

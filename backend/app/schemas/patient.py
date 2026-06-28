@@ -97,6 +97,8 @@ class PatientSummary(BaseModel):
     gender: Gender
     date_of_birth: date
 
+    model_config = {"from_attributes": True}
+
 
 class PatientListResponse(BaseModel):
     total: int

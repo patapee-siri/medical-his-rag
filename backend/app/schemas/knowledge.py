@@ -17,12 +17,15 @@ class KnowledgeDocument(BaseModel):
     source_type: str
     url: str | None = None
     year: int | None = None
+    provider: str = "curated"
+    credibility: str = "peer_reviewed"
 
 
 class KnowledgeSearchResponse(BaseModel):
     query: str
     total_returned: int
     reranked: bool
+    augmented: bool = False
     documents: list[KnowledgeDocument]
 
 
