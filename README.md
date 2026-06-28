@@ -54,11 +54,17 @@ python -m venv venv
 venv\Scripts\activate         # Windows  (source venv/bin/activate on Unix)
 pip install -r requirements.txt
 copy .env.example .env        # then add your HF_API_TOKEN
+python scripts/ingest_knowledge.py   # embed + index real PubMed docs into Qdrant
 uvicorn app.main:app --reload
 ```
 - API: http://localhost:8000
 - Swagger docs: http://localhost:8000/docs
 - Health: http://localhost:8000/health
+
+> The LLM uses the HuggingFace Inference API. MedGemma is not on the free
+> serverless providers; the default is `meta-llama/Llama-3.1-8B-Instruct`
+> (or `Qwen/Qwen2.5-7B-Instruct`). Without a token the app runs in a clearly
+> labelled **mock mode** so it stays fully demoable.
 
 ### 3. Frontend
 ```bash
@@ -75,7 +81,13 @@ needed in development.
 structured logging, global error handling, health check; React frontend with
 routing, Tailwind UI, and a live API-status indicator.
 
-**Next (Phase 2):** patient CRUD, Qdrant retrieval, HuggingFace LLM
-integration, and the consultation endpoint.
+**Phase 2 (RAG) — complete:** SQLAlchemy persistence (patients +
+consultations), fastembed embeddings, Qdrant two-stage retrieval (dense + BM25
+re-ranking), HuggingFace LLM service with graceful mock fallback, API-key auth,
+and the full RAG consultation endpoint — grounded answers with citations,
+confidence scoring, and uncertainty notes over **real PubMed literature**.
+
+**Next (Phase 3):** frontend wiring of the consultation flow, model comparison
+benchmarks, and production polish.
 
 See [`docs/PROJECT.md`](docs/PROJECT.md) for the full 8-week plan.
