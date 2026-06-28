@@ -1,0 +1,58 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+venv/
+.venv/
+env/
+ENV/
+
+# ===== Environment & Secrets =====
+.env
+.env.local
+.env.*.local
+*.key
+
+# ===== Databases =====
+*.db
+*.sqlite
+*.sqlite3
+medical_his.db
+
+# ===== Node / Frontend =====
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+coverage/
+
+# ===== Docker =====
+qdrant_storage/
+ollama_models/
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== Logs =====
+*.log
+logs/
+
+# ===== Testing =====
+.pytest_cache/
+.coverage
+htmlcov/
