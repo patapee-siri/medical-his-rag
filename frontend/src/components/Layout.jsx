@@ -5,6 +5,7 @@ const navItems = [
   { to: "/", label: "Dashboard", end: true },
   { to: "/patients", label: "Patients" },
   { to: "/consultation/new", label: "New Consultation" },
+  { to: "/knowledge", label: "Knowledge" },
 ];
 
 export default function Layout({ children }) {
