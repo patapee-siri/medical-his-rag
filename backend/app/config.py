@@ -29,10 +29,26 @@ class Settings(BaseSettings):
     QDRANT_PORT: int = 6333
     QDRANT_API_KEY: str = "qdrant-dev-key"
     QDRANT_COLLECTION: str = "medical_documents"
+    QDRANT_HTTPS: bool = False  # local Qdrant serves plain HTTP
+
+    # --- Embeddings (fastembed / ONNX, no PyTorch) ---
+    EMBEDDING_MODEL: str = "BAAI/bge-small-en-v1.5"
+    EMBEDDING_DIM: int = 384
+
+    # --- Retrieval ---
+    RETRIEVAL_TOP_K: int = 5  # documents passed to the LLM
+    RETRIEVAL_CANDIDATES: int = 20  # dense candidates fetched before re-ranking
+    ENABLE_RERANKING: bool = True  # BM25 second-stage re-ranking
 
     # --- HuggingFace Inference API ---
+    # NB: MedGemma is not served on HF's free serverless providers. Llama-3.1-8B
+    # -Instruct is a reliable, widely-available default; swap via .env as needed.
     HF_API_TOKEN: str = ""
-    HF_MODEL_ID: str = "google/medgemma-1.5-7b"
+    HF_MODEL_ID: str = "meta-llama/Llama-3.1-8B-Instruct"
+    HF_API_BASE_URL: str = "https://router.huggingface.co/v1"
+    LLM_MAX_TOKENS: int = 512
+    LLM_TEMPERATURE: float = 0.1
+    LLM_TIMEOUT_SECONDS: int = 60
 
     # --- Logging ---
     LOG_LEVEL: str = "INFO"

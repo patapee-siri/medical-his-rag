@@ -14,6 +14,10 @@ from app.schemas.patient import VitalSigns
 class ConsultationRequest(BaseModel):
     """A clinical query for the RAG system."""
 
+    # Disable pydantic's "model_" protected namespace (we use model_preference,
+    # model_used) — these are domain fields, not pydantic config.
+    model_config = {"protected_namespaces": ()}
+
     patient_id: str
     chief_complaint: str = Field(..., min_length=3, max_length=2000)
     vital_signs: VitalSigns | None = None
@@ -54,3 +58,23 @@ class ConsultationResponse(BaseModel):
         "medical judgment. All recommendations must be reviewed by a licensed "
         "healthcare provider."
     )
+
+    model_config = {"from_attributes": True, "protected_namespaces": ()}
+
+
+class ConsultationSummary(BaseModel):
+    """Compact consultation record for history listings."""
+
+    consultation_id: str
+    chief_complaint: str
+    confidence: float
+    model_used: str | None = None
+    created_at: datetime
+
+    model_config = {"from_attributes": True, "protected_namespaces": ()}
+
+
+class ConsultationHistoryResponse(BaseModel):
+    patient_id: str
+    total: int
+    consultations: list[ConsultationSummary]

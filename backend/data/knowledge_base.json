@@ -1,0 +1,190 @@
+{
+  "_meta": {
+    "description": "Real medical literature retrieved from PubMed (NCBI) for the Medical HIS RAG knowledge base.",
+    "source": "PubMed / NCBI E-utilities",
+    "attribution": "Article metadata and abstracts courtesy of PubMed. Each document links to its DOI.",
+    "note": "Abstracts are excerpts of peer-reviewed literature used for retrieval-augmented generation. Cite the DOI when using."
+  },
+  "documents": [
+    {
+      "doc_id": "PMID:30387309",
+      "title": "Meningitis in adults: diagnosis and management",
+      "source_type": "review",
+      "year": 2018,
+      "authors": ["Young N", "Thomas M"],
+      "url": "https://doi.org/10.1111/imj.14102",
+      "text": "Bacterial meningitis is a medical emergency. All clinicians who provide acute medical care require a sound understanding of the priorities of managing a patient with suspected meningitis during the first hour. These include obtaining blood cultures, performing lumbar puncture and initiating appropriate therapy, while avoiding harmful delays such as those that result from not administering treatment until neuroimaging has been performed. Despite the increasing availability of newer diagnostic techniques, the interpretation of cerebrospinal fluid parameters remains a vital skill for clinicians. International and local guidelines differ with regard to initial empirical therapy of bacterial meningitis in adults; the North American guideline recommends ceftriaxone and vancomycin for all patients, while the Australian, UK and European guidelines recommend that vancomycin only be added for patients who are more likely to have pneumococcal meningitis or who have a higher likelihood of being infected with a strain of Streptococcus pneumoniae with reduced susceptibility to ceftriaxone. Patients with risk factors for Listeria meningitis also require an anti-Listeria agent, such as benzylpenicillin, to be added to this treatment regimen. Dexamethasone should be a routine component of empirical therapy due to its proven role in reducing morbidity and mortality from pneumococcal meningitis."
+    },
+    {
+      "doc_id": "PMID:20610819",
+      "title": "Epidemiology, diagnosis, and antimicrobial treatment of acute bacterial meningitis",
+      "source_type": "review",
+      "year": 2010,
+      "authors": ["Brouwer MC", "Tunkel AR", "van de Beek D"],
+      "url": "https://doi.org/10.1128/CMR.00070-09",
+      "text": "The epidemiology of bacterial meningitis has changed as a result of the widespread use of conjugate vaccines and preventive antimicrobial treatment of pregnant women. Given the significant morbidity and mortality associated with bacterial meningitis, accurate information is necessary regarding the important etiological agents and populations at risk to ascertain public health measures and ensure appropriate management. In this review, we describe the changing epidemiology of bacterial meningitis in the United States and throughout the world by reviewing the global changes in etiological agents followed by specific microorganism data on the impact of the development and widespread use of conjugate vaccines. We provide recommendations for empirical antimicrobial and adjunctive treatments for clinical subgroups and review available laboratory methods in making the etiological diagnosis of bacterial meningitis. Finally, we summarize risk factors, clinical features, and microbiological diagnostics for the specific bacteria causing this disease."
+    },
+    {
+      "doc_id": "PMID:23958365",
+      "title": "Meningitis",
+      "source_type": "review",
+      "year": 2013,
+      "authors": ["Putz K", "Hayani K", "Zar FA"],
+      "url": "https://doi.org/10.1016/j.pop.2013.06.001",
+      "text": "Meningitis is defined as inflammation of the meninges, in almost all cases identified by an abnormal number of white blood cells in the cerebrospinal fluid and specific clinical signs/symptoms. Onset may be acute or chronic, and clinical symptoms of acute disease develop over hours to days. This article reviews the epidemiology, pathophysiology, clinical manifestations, diagnosis, and management of acute meningitis, and provides a list of key points for primary care practitioners. Aseptic and bacterial meningitis vary significantly and are discussed separately."
+    },
+    {
+      "doc_id": "PMID:27297342",
+      "title": "Cardiovascular Disease in Diabetes Mellitus: Atherosclerotic Cardiovascular Disease and Heart Failure in Type 2 Diabetes Mellitus",
+      "source_type": "review",
+      "year": 2016,
+      "authors": ["Low Wang CC", "Hess CN", "Hiatt WR", "Goldfine AB"],
+      "url": "https://doi.org/10.1161/CIRCULATIONAHA.116.022194",
+      "text": "Cardiovascular disease remains the principal cause of death and disability among patients with diabetes mellitus. Diabetes mellitus exacerbates mechanisms underlying atherosclerosis and heart failure. Unfortunately, these mechanisms are not adequately modulated by therapeutic strategies focusing solely on optimal glycemic control with currently available drugs or approaches. In the setting of multifactorial risk reduction with statins and other lipid-lowering agents, antihypertensive therapies, and antihyperglycemic treatment strategies, cardiovascular complication rates are falling, yet remain higher for patients with diabetes mellitus than for those without. This review considers the mechanisms, history, controversies, new pharmacological agents, and recent evidence for current guidelines for cardiovascular management in the patient with diabetes mellitus."
+    },
+    {
+      "doc_id": "PMID:32445740",
+      "title": "Type 2 diabetes and cognitive dysfunction - towards effective management of both comorbidities",
+      "source_type": "review",
+      "year": 2020,
+      "authors": ["Srikanth V", "Sinclair AJ", "Hill-Briggs F", "et al"],
+      "url": "https://doi.org/10.1016/S2213-8587(20)30118-2",
+      "text": "Type 2 diabetes and cognitive dysfunction are highly prevalent disorders worldwide. Although type 2 diabetes is associated with an increased risk of dementia, awareness of the link between the two conditions is poor, and few recommendations are available to guide clinicians about how to approach cognitive dysfunction in people with diabetes. Clinical guidelines in diabetes have only recently begun to emphasise the importance of cognitive impairment in diabetes and its management. This paper synthesises knowledge about the link between diabetes and cognitive dysfunction, issues pertaining to screening and diagnosis of cognitive impairment and dementia in those with type 2 diabetes, and management of diabetes in people with cognitive dysfunction accounting for age and frailty."
+    },
+    {
+      "doc_id": "PMID:33515493",
+      "title": "Management of diabetes and hyperglycaemia in the hospital",
+      "source_type": "review",
+      "year": 2021,
+      "authors": ["Pasquel FJ", "Lansang MC", "Dhatariya K", "Umpierrez GE"],
+      "url": "https://doi.org/10.1016/S2213-8587(20)30381-8",
+      "text": "Hyperglycaemia in people with and without diabetes admitted to the hospital is associated with a substantial increase in morbidity, mortality, and health-care costs. Professional societies have recommended insulin therapy as the cornerstone of inpatient pharmacological management. Intravenous insulin therapy is the treatment of choice in the critical care setting. In non-intensive care settings, several insulin protocols have been proposed to manage patients with hyperglycaemia; however, meta-analyses comparing different treatment regimens have not clearly endorsed the benefits of any particular strategy. Clinical guidelines recommend stopping oral antidiabetes drugs during hospitalisation; however, findings from clinical trials have suggested that non-insulin drugs, alone or in combination with basal insulin, can be used to achieve appropriate glycaemic control in selected populations."
+    },
+    {
+      "doc_id": "PMID:36880928",
+      "title": "Hypertension in Children and Young Adults",
+      "source_type": "review",
+      "year": 2022,
+      "authors": ["Haseler E", "Sinha MD"],
+      "url": "https://doi.org/10.1016/j.pcl.2022.07.005",
+      "text": "Primary hypertension is most common during adolescence with increasing prevalence globally, alongside the epidemic of obesity. Unlike in adults, there are no data on children with uncontrolled hypertension and their future risk of hard cardiovascular and cerebrovascular outcomes. However, hypertension in childhood is linked to hypertensive-mediated organ damage which is often reversible if treated appropriately. Despite differing guidelines regarding the threshold for defining hypertension, there is consensus that early recognition and prompt management with lifestyle modification escalating to antihypertensive medication is required to ameliorate adverse outcomes."
+    },
+    {
+      "doc_id": "PMID:37594718",
+      "title": "Hypertension Treatment in Frail Older Adults: A Systematic Review and Appraisal of Guidelines",
+      "source_type": "clinical_guideline",
+      "year": 2023,
+      "authors": ["Hu K", "Zhou G", "Jiang M", "et al"],
+      "url": "https://doi.org/10.1007/s40266-023-01053-1",
+      "text": "Managing hypertension in frail older patients is challenging. Several institutions have published up-to-date hypertension guidelines suggesting frailty screening among older hypertensive patients, with new recommendations for blood pressure-lowering treatment among the frail population. We identified 13 hypertension guidelines. Considering treatment tolerability or increased likelihood of adverse effects while using pharmacotherapy in frail older patients was mentioned in all guidelines. Ten guidelines recommended adjusting blood pressure targets or specific pharmacotherapy programs. Four guidelines recommended using clinical judgment when prescribing. There were considerable variations in methodology and reporting quality across the included hypertension guidelines, and recommendations for frail older patients were varied and inconsistent."
+    },
+    {
+      "doc_id": "PMID:40014670",
+      "title": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes",
+      "source_type": "clinical_guideline",
+      "year": 2025,
+      "authors": ["Rao SV", "O'Donoghue ML", "Ruel M", "et al"],
+      "url": "https://doi.org/10.1161/CIR.0000000000001309",
+      "text": "The 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes incorporates new evidence since the 2013 guideline for ST-Elevation Myocardial Infarction and the 2014 guideline for Non-ST-Elevation Acute Coronary Syndromes. A comprehensive literature search was conducted from July 2023 to April 2024 across MEDLINE, EMBASE, the Cochrane Library, and other databases. Many recommendations from previously published guidelines have been updated with new evidence, and new recommendations have been created when supported by published data, spanning antiplatelet and anticoagulant therapy, revascularization, and prehospital and emergency management of acute coronary syndromes."
+    },
+    {
+      "doc_id": "PMID:36396216",
+      "title": "Management of Acute Coronary Syndrome",
+      "source_type": "review",
+      "year": 2022,
+      "authors": ["Atwood J"],
+      "url": "https://doi.org/10.1016/j.emc.2022.06.008",
+      "text": "One of the most common complaints encountered in the emergency department is chest pain. In many evaluations, the leading diagnostic consideration is an acute coronary syndrome (ACS). ACS refers to a spectrum of coronary artery pathologies, including unstable angina, non-ST segment elevation myocardial infarction, and ST-segment elevation myocardial infarction. The distinction between subtypes of ACS guides acute diagnostic and management decisions. Failure to diagnose and manage ACS properly is a frequent cause of medico-legal litigation. This article reviews the initial identification and critical management steps in patients presenting to the emergency department with ACS."
+    },
+    {
+      "doc_id": "PMID:39421468",
+      "title": "Update on Asthma Management Guidelines",
+      "source_type": "clinical_guideline",
+      "year": 2024,
+      "authors": ["Dubin S", "Patak P", "Jung D"],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39421468/",
+      "text": "The Global Initiative for Asthma (GINA) publishes a yearly global strategy to improve asthma awareness, prevention and management worldwide, based on a review of the most updated evidence. The current 2024 GINA update advises that all adults and adolescents with asthma receive inhaled corticosteroid (ICS)-containing medication and should not be treated with short acting beta agonist (SABA) alone. The 2024 GINA strategy divides treatment into two Tracks: Track 1 (preferred), the reliever is as-needed combination low dose ICS-formoterol; Track 2 uses SABA as the reliever along with a separate ICS inhaler. The updates stress that individuals with asthma should have a written asthma action plan, and management should be tailored to the individual to help reduce serious exacerbations, fatalities, and hospitalizations."
+    },
+    {
+      "doc_id": "PMID:29080708",
+      "title": "Classification of Cough as a Symptom in Adults and Management Algorithms: CHEST Guideline and Expert Panel Report",
+      "source_type": "clinical_guideline",
+      "year": 2017,
+      "authors": ["Irwin RS", "French CL", "Chang AB", "Altman KW"],
+      "url": "https://doi.org/10.1016/j.chest.2017.10.016",
+      "text": "Cough is classified by duration as acute (<3 weeks), subacute (3-8 weeks), and chronic (>8 weeks). For acute cough, the most common causes are respiratory infections, most likely viral, followed by exacerbations of underlying diseases such as asthma and COPD, and pneumonia. For subacute cough, the most common causes are postinfectious cough and exacerbation of underlying diseases such as asthma, COPD, and upper airway cough syndrome. For chronic cough, the most common causes are upper airway cough syndrome from rhinosinus conditions, asthma, gastroesophageal reflux disease, and nonasthmatic eosinophilic bronchitis. CHEST's cough guidelines and management algorithms for acute, subacute, and chronic cough in adults appear useful in diagnosing and treating patients with cough."
+    },
+    {
+      "doc_id": "PMID:31573350",
+      "title": "Diagnosis and Treatment of Adults with Community-acquired Pneumonia: ATS/IDSA Clinical Practice Guideline",
+      "source_type": "clinical_guideline",
+      "year": 2019,
+      "authors": ["Metlay JP", "Waterer GW", "Long AC", "et al"],
+      "url": "https://doi.org/10.1164/rccm.201908-1581ST",
+      "text": "This document provides evidence-based clinical practice guidelines on the management of adult patients with community-acquired pneumonia. A multidisciplinary panel conducted pragmatic systematic reviews and applied GRADE methodology. The panel addressed 16 specific areas spanning questions of diagnostic testing, determination of site of care, selection of initial empiric antibiotic therapy, and subsequent management decisions. The availability of results from new therapeutic trials and epidemiological investigations led to revised recommendations for empiric treatment strategies and additional management decisions for adult patients with community-acquired pneumonia."
+    },
+    {
+      "doc_id": "PMID:40261382",
+      "title": "Effect of hydrocortisone on mortality in patients with severe community-acquired pneumonia (REMAP-CAP Corticosteroid Domain RCT)",
+      "source_type": "research_article",
+      "year": 2025,
+      "authors": ["REMAP-CAP Investigators", "Angus DC"],
+      "url": "https://doi.org/10.1007/s00134-025-07861-w",
+      "text": "To determine whether hydrocortisone improves mortality in severe community-acquired pneumonia (CAP), adults admitted to the ICU with severe CAP were randomized to a 7-day course of intravenous hydrocortisone (50 mg every 6 h) or control. The primary end point was 90-day all-cause mortality. Of 658 patients enrolled, 536 were randomized to hydrocortisone and 122 to control. Day 90 mortality was 15% and 9.8% for the hydrocortisone and control groups respectively. Among patients with severe CAP, treatment with a fixed 7-day course of hydrocortisone, compared with no hydrocortisone, appears unlikely to yield a large reduction in mortality; smaller benefits and possible harm are not excluded."
+    },
+    {
+      "doc_id": "PMID:28101605",
+      "title": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock: 2016",
+      "source_type": "clinical_guideline",
+      "year": 2017,
+      "authors": ["Rhodes A", "Evans LE", "Alhazzani W", "et al"],
+      "url": "https://doi.org/10.1007/s00134-017-4683-6",
+      "text": "A consensus committee of 55 international experts representing 25 organizations provided an update to the Surviving Sepsis Campaign Guidelines for Management of Sepsis and Septic Shock. The panel consisted of five sections: hemodynamics, infection, adjunctive therapies, metabolic, and ventilation. Following GRADE methodology, the panel provided 93 statements on early management and resuscitation of patients with sepsis or septic shock. Overall, 32 were strong recommendations, 39 were weak recommendations, and 18 were best-practice statements. Evidence-based recommendations regarding the acute management of sepsis and septic shock are the foundation of improved outcomes for these critically ill patients with high mortality."
+    },
+    {
+      "doc_id": "PMID:32032273",
+      "title": "Surviving Sepsis Campaign International Guidelines for the Management of Septic Shock and Sepsis-Associated Organ Dysfunction in Children",
+      "source_type": "clinical_guideline",
+      "year": 2020,
+      "authors": ["Weiss SL", "Peters MJ", "Alhazzani W", "et al"],
+      "url": "https://doi.org/10.1097/PCC.0000000000002198",
+      "text": "Evidence-based recommendations for clinicians caring for children with septic shock and other sepsis-associated organ dysfunction were developed by a panel of 49 international experts. The panel consisted of six subgroups: recognition and management of infection, hemodynamics and resuscitation, ventilation, endocrine and metabolic therapies, adjunctive therapies, and research priorities. The panel provided 77 statements on the management and resuscitation of children with septic shock and other sepsis-associated organ dysfunction: six strong recommendations, 52 weak recommendations, and nine best-practice statements. These recommendations provide a foundation for consistent care to improve outcomes in pediatric sepsis."
+    },
+    {
+      "doc_id": "PMID:31662037",
+      "title": "Guidelines for the Early Management of Patients With Acute Ischemic Stroke: 2019 Update (AHA/ASA)",
+      "source_type": "clinical_guideline",
+      "year": 2019,
+      "authors": ["Powers WJ", "Rabinstein AA", "Ackerson T", "et al"],
+      "url": "https://doi.org/10.1161/STR.0000000000000211",
+      "text": "The purpose of these guidelines is to provide an up-to-date comprehensive set of recommendations for clinicians caring for adult patients with acute arterial ischemic stroke. These guidelines detail prehospital care, urgent and emergency evaluation and treatment with intravenous and intra-arterial therapies, and in-hospital management, including secondary prevention measures that are appropriately instituted within the first 2 weeks. The guidelines support the overarching concept of stroke systems of care in both the prehospital and hospital settings, emphasizing early recognition and early revascularization to reduce stroke-related morbidity and mortality."
+    },
+    {
+      "doc_id": "PMID:32947473",
+      "title": "Management of Acute Ischemic Stroke",
+      "source_type": "review",
+      "year": 2020,
+      "authors": ["Herpich F", "Rincon F"],
+      "url": "https://doi.org/10.1097/CCM.0000000000004597",
+      "text": "Stroke mortality has been declining over the past 6 decades, and as a result, stroke has fallen from the second to the fifth leading cause of death in the United States. This trend may follow recent advances in the management of stroke, which highlight the importance of early recognition and early revascularization. Recent studies have shown that early recognition, emergency interventional treatment of acute ischemic stroke, and treatment in dedicated stroke centers can significantly reduce stroke-related morbidity and mortality. Management of stroke involves a multidisciplinary approach that starts and extends beyond hospital admission."
+    },
+    {
+      "doc_id": "PMID:40197996",
+      "title": "Acute ischemic stroke: A guideline-based overview of evaluation and management",
+      "source_type": "review",
+      "year": 2025,
+      "authors": ["Bogenschutz KM", "Fisher DS", "Wright GW"],
+      "url": "https://doi.org/10.1097/01.JAA.0000000000000203",
+      "text": "Stroke is the fifth most common cause of death in the United States. Of all stroke cases, 85% are caused by vascular occlusion, resulting in infarction to the brain, in a condition known as acute ischemic stroke (AIS). The American Heart Association/American Stroke Association guideline addresses early management of AIS to ensure rapid evaluation and imaging for patients suspected to be affected. This article reviews the AHA/ASA AIS guideline and highlights key components of care, such as patient evaluation, criteria for fibrinolysis and mechanical thrombectomy, postacute care, and hospital discharge with secondary prevention measures."
+    },
+    {
+      "doc_id": "PMID:38692830",
+      "title": "Management of Severe Mitral Regurgitation in Patients With Acute Myocardial Infarction",
+      "source_type": "review",
+      "year": 2024,
+      "authors": ["Estevez-Loureiro R", "Lorusso R", "Taramasso M", "et al"],
+      "url": "https://doi.org/10.1016/j.jacc.2023.09.840",
+      "text": "Severe acute mitral regurgitation after myocardial infarction includes partial and complete papillary muscle rupture or functional mitral regurgitation. Although its incidence is <1%, mitral regurgitation after acute myocardial infarction frequently causes hemodynamic instability, pulmonary edema, and cardiogenic shock. Medical management has the worst prognosis, and mortality has not changed in decades. Surgery represents the gold standard but is associated with high morbidity and mortality. Recently, transcatheter interventions have opened a new door for management. Mechanical circulatory support restores vital organ perfusion and offers the opportunity for a steadier surgical repair."
+    }
+  ]
+}
