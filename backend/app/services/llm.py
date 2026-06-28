@@ -66,6 +66,7 @@ class LLMService:
                 )
                 resp.raise_for_status()
                 data = resp.json()
+            text = self._extract_text(data)
         except httpx.HTTPStatusError as exc:
             logger.error(
                 "llm_http_error",
@@ -80,8 +81,24 @@ class LLMService:
             logger.error("llm_request_failed", error=str(exc), model=self.model_id)
             raise ServiceUnavailableError("LLM provider is unreachable") from exc
 
-        text = data["choices"][0]["message"]["content"].strip()
         return LLMResult(text=text, model=self.model_id, is_mock=False)
+
+    @staticmethod
+    def _extract_text(data: dict) -> str:
+        """Pull the assistant message out of a chat-completions payload.
+
+        The HF router occasionally returns ``200 OK`` with an empty/malformed
+        body (provider cold-start or moderation). Treat any such response as a
+        provider failure so the caller degrades gracefully instead of 500-ing.
+        """
+        try:
+            content = data["choices"][0]["message"]["content"]
+        except (KeyError, IndexError, TypeError):
+            content = None
+        if not content or not str(content).strip():
+            logger.error("llm_empty_response", body=str(data)[:500])
+            raise ServiceUnavailableError("LLM returned an empty response")
+        return str(content).strip()
 
     # --- mock mode ---
     def _mock(self, messages: list[ChatMessage]) -> LLMResult:

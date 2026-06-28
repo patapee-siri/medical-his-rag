@@ -19,6 +19,7 @@ from app.config import settings
 from app.db.session import get_db
 from app.services.consultations import ConsultationService
 from app.services.embeddings import EmbeddingService
+from app.services.live_ingest import LiveAugmentationService
 from app.services.llm import LLMService
 from app.services.patients import PatientService
 from app.services.retrieval import RetrievalService
@@ -57,9 +58,18 @@ def get_llm_service() -> LLMService:
     return LLMService()
 
 
+@lru_cache
+def get_augmentation_service() -> LiveAugmentationService:
+    return LiveAugmentationService(get_embedding_service(), get_vector_store())
+
+
 # --- per-request services ---
 def get_retrieval_service() -> RetrievalService:
-    return RetrievalService(get_embedding_service(), get_vector_store())
+    return RetrievalService(
+        get_embedding_service(),
+        get_vector_store(),
+        augmentation=get_augmentation_service(),
+    )
 
 
 def get_patient_service(db: Annotated[Session, Depends(get_db)]) -> PatientService:

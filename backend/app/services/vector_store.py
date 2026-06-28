@@ -11,9 +11,17 @@ import uuid
 from dataclasses import dataclass
 
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, PointStruct, VectorParams
+from qdrant_client.models import (
+    Distance,
+    FieldCondition,
+    Filter,
+    MatchAny,
+    PointStruct,
+    VectorParams,
+)
 
 from app.config import settings
+from app.services.sources.base import CREDIBILITY_ALLOWLIST, CREDIBILITY_PEER_REVIEWED
 from app.utils.logging_config import get_logger
 
 logger = get_logger(__name__)
@@ -33,6 +41,8 @@ class Document:
     url: str | None = None
     authors: list[str] | None = None
     year: int | None = None
+    provider: str = "curated"
+    credibility: str = CREDIBILITY_PEER_REVIEWED
 
 
 @dataclass
@@ -45,6 +55,8 @@ class SearchHit:
     url: str | None
     authors: list[str] | None
     year: int | None
+    provider: str = "curated"
+    credibility: str = CREDIBILITY_PEER_REVIEWED
 
 
 def _point_id(doc_id: str) -> str:
@@ -107,6 +119,8 @@ class VectorStore:
                     "url": doc.url,
                     "authors": doc.authors or [],
                     "year": doc.year,
+                    "provider": doc.provider,
+                    "credibility": doc.credibility,
                 },
             )
             for doc, vector in zip(documents, vectors)
@@ -116,12 +130,24 @@ class VectorStore:
 
     # --- reads ---
     def search(self, query_vector: list[float], limit: int) -> list[SearchHit]:
-        """Cosine similarity search returning the top ``limit`` hits."""
+        """Cosine similarity search, restricted to credible (allowlisted) docs.
+
+        The credibility filter is applied server-side so even a doc that somehow
+        got indexed with a disallowed tier (e.g. a preprint) can never surface.
+        """
         result = self._client.query_points(
             collection_name=self.collection,
             query=query_vector,
             limit=limit,
             with_payload=True,
+            query_filter=Filter(
+                must=[
+                    FieldCondition(
+                        key="credibility",
+                        match=MatchAny(any=list(CREDIBILITY_ALLOWLIST)),
+                    )
+                ]
+            ),
         )
         hits: list[SearchHit] = []
         for point in result.points:
@@ -136,6 +162,8 @@ class VectorStore:
                     url=p.get("url"),
                     authors=p.get("authors"),
                     year=p.get("year"),
+                    provider=p.get("provider", "curated"),
+                    credibility=p.get("credibility", CREDIBILITY_PEER_REVIEWED),
                 )
             )
         return hits

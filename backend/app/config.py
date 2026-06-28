@@ -40,6 +40,20 @@ class Settings(BaseSettings):
     RETRIEVAL_CANDIDATES: int = 20  # dense candidates fetched before re-ranking
     ENABLE_RERANKING: bool = True  # BM25 second-stage re-ranking
 
+    # --- Live multi-source RAG (hybrid augmentation) ---
+    ENABLE_LIVE_RETRIEVAL: bool = True
+    LIVE_PER_SOURCE_LIMIT: int = 5  # docs fetched per provider per augmentation
+    LIVE_MIN_LOCAL_HITS: int = 3  # augment if local hits fall below this
+    # Augment if the best local cosine score is below this. Calibrated for
+    # bge-small (high similarity floor): in-corpus ~0.71-0.80, off-corpus ~0.51-0.62.
+    LIVE_SCORE_THRESHOLD: float = 0.66
+    LIVE_TIMEOUT_SECONDS: int = 8  # per-provider HTTP timeout
+    # Credible source toggles (preprints are intentionally absent — hard rule)
+    SOURCE_PUBMED: bool = True
+    SOURCE_EUROPEPMC: bool = True
+    SOURCE_CLINICALTRIALS: bool = True
+    NCBI_API_KEY: str = ""  # optional; raises PubMed rate limit
+
     # --- HuggingFace Inference API ---
     # NB: MedGemma is not served on HF's free serverless providers. Llama-3.1-8B
     # -Instruct is a reliable, widely-available default; swap via .env as needed.

@@ -126,7 +126,7 @@ class ConsultationService:
         query = req.chief_complaint
         if req.additional_symptoms:
             query += " " + " ".join(req.additional_symptoms)
-        sources = self.retrieval.retrieve(query)
+        sources, _augmented = await self.retrieval.retrieve_hybrid(query)
 
         context = _build_context_block(sources)
         messages = [
@@ -135,16 +135,23 @@ class ConsultationService:
         ]
 
         degraded = False
+        is_mock = False
+        model_used = self.llm.model_id
         try:
             result = await self.llm.generate(messages)
             assessment, model_used, is_mock = result.text, result.model, result.is_mock
         except ServiceUnavailableError:
             degraded = True
-            is_mock = False
-            model_used = self.llm.model_id
             assessment = (
                 "The language model is currently unavailable. Below are the most "
                 "relevant retrieved sources for clinician review."
+            )
+        except Exception as exc:  # noqa: BLE001 - never let a consultation 500
+            logger.error("consultation_llm_unexpected_error", error=str(exc))
+            degraded = True
+            assessment = (
+                "An unexpected error occurred while generating the assessment. "
+                "Below are the most relevant retrieved sources for clinician review."
             )
 
         confidence = _confidence(sources, degraded=degraded, mock=is_mock)
@@ -160,6 +167,8 @@ class ConsultationService:
                 relevance_score=s.relevance_score,
                 source_type=s.source_type,
                 url=s.url,
+                provider=s.provider,
+                credibility=s.credibility,
             )
             for s in sources
         ]

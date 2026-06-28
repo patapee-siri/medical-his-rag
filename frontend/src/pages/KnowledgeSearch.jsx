@@ -85,6 +85,7 @@ export default function KnowledgeSearch() {
         <div className="space-y-2">
           <p className="text-sm text-slate-500">
             {results.total_returned} results {results.reranked && "· re-ranked"}
+            {results.augmented && " · 🔄 augmented with live sources"}
           </p>
           {results.documents.map((d, i) => (
             <div key={d.doc_id} className="rounded-xl border border-slate-200 bg-white p-4 text-sm">
@@ -99,9 +100,17 @@ export default function KnowledgeSearch() {
                     <span className="font-medium text-slate-800">{d.title}</span>
                   )}
                   <p className="mt-1 text-xs text-slate-500">{d.excerpt}</p>
-                  <div className="mt-1.5 flex gap-2">
+                  <div className="mt-1.5 flex flex-wrap gap-2">
                     <Badge tone="slate">{d.source_type.replace(/_/g, " ")}</Badge>
                     {d.year && <Badge tone="slate">{d.year}</Badge>}
+                    {d.provider && d.provider !== "curated" && (
+                      <Badge tone="teal">{d.provider}</Badge>
+                    )}
+                    {d.credibility && (
+                      <Badge tone={d.credibility === "peer_reviewed" ? "teal" : "amber"}>
+                        {d.credibility.replace(/_/g, " ")}
+                      </Badge>
+                    )}
                   </div>
                 </div>
                 <span className="shrink-0 text-xs font-medium text-slate-400">

@@ -29,20 +29,21 @@ router = APIRouter(
 @router.post(
     "/search",
     response_model=KnowledgeSearchResponse,
-    summary="Semantic search over the medical knowledge base",
+    summary="Semantic search over the medical knowledge base (hybrid live RAG)",
 )
-def search_knowledge(
+async def search_knowledge(
     payload: KnowledgeSearchRequest,
     retrieval: Annotated[RetrievalService, Depends(get_retrieval_service)],
 ) -> KnowledgeSearchResponse:
     reranked = settings.ENABLE_RERANKING if payload.rerank is None else payload.rerank
-    sources = retrieval.retrieve(
+    sources, augmented = await retrieval.retrieve_hybrid(
         payload.query, top_k=payload.top_k, rerank=payload.rerank
     )
     return KnowledgeSearchResponse(
         query=payload.query,
         total_returned=len(sources),
         reranked=reranked,
+        augmented=augmented,
         documents=[
             KnowledgeDocument(
                 doc_id=s.doc_id,
@@ -52,6 +53,8 @@ def search_knowledge(
                 source_type=s.source_type,
                 url=s.url,
                 year=s.year,
+                provider=s.provider,
+                credibility=s.credibility,
             )
             for s in sources
         ],
